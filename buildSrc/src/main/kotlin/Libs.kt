@@ -70,6 +70,8 @@ object NetworkLib {
     const val KotlinXSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
     const val KotlinXSerializationRetrofit =
         "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+    const val GsonConverter= "com.squareup.retrofit2:converter-gson:2.9.0"
+    const val Gson = "com.google.code.gson:gson:2.9.0"
 }
 
 object StorageLib {

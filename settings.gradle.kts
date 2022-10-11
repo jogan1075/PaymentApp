@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PaymentApp"
 include (":app")
+include(":core:network")
+include(":core:mvi")

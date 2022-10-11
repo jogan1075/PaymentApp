@@ -155,6 +155,8 @@ fun DependencyHandler.addNetworkDependencies() {
     testImplementation(TestingLib.Okhttp)
     debugImplementation(NetworkLib.ChuckerDebug)
     releaseImplementation(NetworkLib.ChuckerRelease)
+    implementation(NetworkLib.GsonConverter)
+    implementation(NetworkLib.Gson)
 }
 
 fun DependencyHandler.addStorageDependencies() {
