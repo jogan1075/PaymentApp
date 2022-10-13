@@ -16,3 +16,4 @@ rootProject.name = "PaymentApp"
 include (":app")
 include(":core:network")
 include(":core:mvi")
+include(":core:utils")

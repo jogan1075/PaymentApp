@@ -101,4 +101,7 @@ dependencies {
     addHiltDependencies()
     // Test
     addTestDependencies()
+
+    //modules
+    addModuleDependencies()
 }

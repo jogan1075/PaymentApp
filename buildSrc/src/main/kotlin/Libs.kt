@@ -11,7 +11,7 @@ object SupportLib {
     const val CoroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
     const val LifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
     const val ActivityKtx = "androidx.activity:activity-ktx:1.4.0"
-
+   const val viewModelKtx= "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
     const val Splashscreen = "androidx.core:core-splashscreen:1.0.0-beta02"
     const val Timber = "com.jakewharton.timber:timber:5.0.1"
     const val Paging = "androidx.paging:paging-runtime-ktx:3.1.1"
@@ -91,11 +91,12 @@ object FirebaseLib {
 }
 
 object DaggerHiltLib {
-    const val Android = "com.google.dagger:hilt-android:2.42"
-    const val AndroidCompiler = "com.google.dagger:hilt-android-compiler:2.42"
+    const val Android = "com.google.dagger:hilt-android:2.40"
+    const val AndroidCompiler = "com.google.dagger:hilt-android-compiler:2.40.4"
     const val Compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
     const val HiltCompiler= "androidx.hilt:hilt-compiler:1.0.0"
-    const val ViewModel= "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    const val ViewModel= "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+    const val inject ="javax.inject:javax.inject:1"
 }
 
 object TestingLib {

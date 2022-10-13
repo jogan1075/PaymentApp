@@ -1,4 +1,4 @@
-package com.jmc.paymentapp.ui.theme
+package com.jmc.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

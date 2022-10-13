@@ -100,7 +100,8 @@ fun DependencyHandler.addCommonDependencies() {
     implementation(SupportLib.Material)
     implementation(SupportLib.CoroutineCore)
     implementation(SupportLib.CoroutineAndroid)
-    implementation(SupportLib.LifecycleRuntime)
+//    implementation(SupportLib.LifecycleRuntime)
+    implementation(SupportLib.viewModelKtx)
     implementation(SupportLib.ActivityKtx)
 }
 
@@ -117,7 +118,7 @@ fun DependencyHandler.addComposeDependencies() {
     debugImplementation(ComposeLib.Manifest)
     //
     implementation(ComposeLib.Activity)
-    implementation(ComposeLib.ViewModel)
+//    implementation(ComposeLib.ViewModel)
     implementation(ComposeLib.ConstraintLayout)
     implementation(ComposeLib.Lottie)
     implementation(ComposeLib.Paging)
@@ -196,3 +197,20 @@ fun DependencyHandler.addHiltDependencies(){
     implementation(DaggerHiltLib.Compose)
     implementation(DaggerHiltLib.ViewModel)
 }
+
+fun DependencyHandler.addModuleDependencies() {
+    // Modules
+    implementation(project(mapOf("path" to ":core:mvi")))
+    implementation(project(mapOf("path" to ":core:network")))
+    implementation(project(mapOf("path" to ":core:utils")))
+
+}
+
+val DependencyHandler.MVI
+    get() = implementation(project(mapOf("path" to ":core:mvi")))
+
+val DependencyHandler.NETWORK
+    get() = implementation(project(mapOf("path" to ":core:network")))
+
+val DependencyHandler.UTILS
+    get() = implementation(project(mapOf("path" to ":core:utils")))
