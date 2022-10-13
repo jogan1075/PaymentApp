@@ -33,7 +33,8 @@ object ComposeLib {
     const val ConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
     const val Lottie = "com.airbnb.android:lottie-compose:5.0.3"
     const val Paging = "androidx.paging:paging-compose:1.0.0-alpha14"
-    const val Coil = "io.coil-kt:coil-compose:2.0.0-rc02"
+    const val Coil = "io.coil-kt:coil-compose:2.1.0"
+    const val CoilGif = "io.coil-kt:coil-gif:2.1.0"
 }
 
 object NavigationLib {

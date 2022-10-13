@@ -70,7 +70,7 @@ class RetrofitWebServiceFactory<TRetrofitWebService> {
             val originalRequest = chain.request()
             val originalUrl = originalRequest.url
             val url = originalUrl.newBuilder()
-                .addQueryParameter("api_key", "42e8e9e1980943214bf82d723d633738")
+                .addQueryParameter("public_key", "444a9ef5-8a6b-429f-abdf-587639155d88")
                 .build()
 
             val requestBuilder = originalRequest.newBuilder().url(url)

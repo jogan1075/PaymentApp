@@ -104,4 +104,6 @@ dependencies {
 
     //modules
     addModuleDependencies()
+
+    implementation("io.coil-kt:coil-gif:2.2.2")
 }

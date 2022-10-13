@@ -27,7 +27,7 @@ fun Navigation(activity: Activity) {
          { backStackEntry ->
             PaymentMethodScreen(
                 navController = navController,
-                toString = backStackEntry.arguments?.getString("amount")
+                monto = backStackEntry.arguments?.getString("amount")
                     .toString()
             )
         }

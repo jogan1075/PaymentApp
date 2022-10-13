@@ -123,7 +123,7 @@ fun DependencyHandler.addComposeDependencies() {
     implementation(ComposeLib.Lottie)
     implementation(ComposeLib.Paging)
     implementation(ComposeLib.Coil)
-
+    implementation(ComposeLib.CoilGif)
     // Accompanist
     implementation(AccompanistLib.Swiperefresh)
     implementation(AccompanistLib.Systemuicontroller)
