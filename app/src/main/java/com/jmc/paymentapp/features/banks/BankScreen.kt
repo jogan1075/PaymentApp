@@ -1,4 +1,4 @@
-package com.jmc.paymentapp.features.payment.view
+package com.jmc.paymentapp.features.banks
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,9 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.jmc.paymentapp.features.payment.presentation.PaymentViewModel
-import com.jmc.paymentapp.features.payment.presentation.contract.PaymentContract
-import com.jmc.paymentapp.navigation.Screens
+import com.jmc.paymentapp.features.banks.presentation.BankViewModel
+import com.jmc.paymentapp.features.banks.presentation.contract.BankContract
 import com.jmc.theme.black
 import com.jmc.theme.colorPrimary
 import com.jmc.theme.white
@@ -21,17 +20,21 @@ import com.jmc.uicomponent.LoadingScreen
 
 //@Preview(showBackground = true)
 @Composable
-fun PaymentMethodScreen(navController: NavHostController, monto: String) {
-    val viewModel = hiltViewModel<PaymentViewModel>()
-    val state = viewModel.viewState.value
+fun BankScreen(navController: NavHostController, idPayment: String) {
+    val viewModel = hiltViewModel<BankViewModel>()
 
+
+    val state = viewModel.viewState.value
+    if(state.list.isNullOrEmpty()) {
+        viewModel.setEvent(BankContract.Event.IdPayment(idPayment))
+    }
     LoadingScreen(isLoading = viewModel.state.isLoading) {
-        Content(monto = monto, state = state, navController = navController)
+        Content(state = state, navController = navController)
     }
 }
 
 @Composable
-private fun Content(monto: String, state: PaymentContract.State, navController: NavHostController) {
+private fun Content(state: BankContract.State, navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -52,34 +55,6 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                     }
 
                 })
-            /*  Row(
-                  modifier = Modifier
-                      .padding(top = 16.dp)
-                      .fillMaxWidth(),
-                  horizontalArrangement = Arrangement.SpaceBetween,
-                  verticalAlignment = Alignment.CenterVertically
-              ) {
-                  IconButton(onClick = { }) {
-                      Icon(
-                          modifier = Modifier.size(32.dp, 32.dp),
-                          imageVector = Icons.Default.KeyboardArrowLeft,
-                          contentDescription = "",
-                          tint = black
-                      )
-                  }
-
-                  Text(
-                      text = "Register",
-                      color = black,
-                      modifier = Modifier
-                          .padding(end = 48.dp)
-                          .fillMaxWidth(),
-                      fontWeight = FontWeight.Bold,
-                      textAlign = TextAlign.Center,
-                      fontSize = 16.sp,
-                  )
-
-              }*/
         }, content = {
             Column {
                 Text(text = "Seleccione el Medio de Pago", color = black)
@@ -90,8 +65,9 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                         .padding(bottom = 50.dp)
                 ) {
                     items(state.list?.size!!) { index ->
-                        ItemPaymentRow(item = state.list[index], onItemClicked ={ id -> navController.navigate(
-                            Screens.BankListScreen.route + "?param=$id") }  )
+                        ItemBankRow(item = state.list[index], onItemClicked = { /*id -> navController.navigate(
+                            Screens.BankScreen.route + "?param={$id}")*/
+                        })
                     }
                 }
             }
@@ -105,7 +81,7 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                 elevation = 5.dp
             ) {
                 Column(modifier = Modifier.background(colorPrimary)) {
-                    Text(text = "Monto: $" + monto)
+                    Text(text = "Monto: $")
 //                    Text(text = "asasasasas")
 
                 }

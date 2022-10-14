@@ -17,7 +17,7 @@ class PaymentContract {
         override val isLoading: Boolean = false,
         /*val isLoading: Boolean = false,*/
         val list: List<PaymentModelUi>? = listOf(),
-//        val password: String? = null,
+        val idPayment: String? = null,
 //        val navController: NavController? =null,
         val error: String? = null
     ) : ViewState {

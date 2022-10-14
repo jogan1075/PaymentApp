@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.jmc.paymentapp.features.amount.AmountScreen
+import com.jmc.paymentapp.features.banks.BankScreen
 import com.jmc.paymentapp.features.payment.view.PaymentMethodScreen
 
 @Composable
@@ -32,7 +33,15 @@ fun Navigation(activity: Activity) {
             )
         }
 
-
+        composable(
+            Screens.BankListScreen.route + "?param={id}")
+        { backStackEntry ->
+            BankScreen(
+                navController = navController,
+                idPayment = backStackEntry.arguments?.getString("id")
+                    .toString()
+            )
+        }
 
 
         /* composable(Screen.RegisterScreen.route) {
