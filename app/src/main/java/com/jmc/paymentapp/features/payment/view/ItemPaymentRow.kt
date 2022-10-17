@@ -34,14 +34,14 @@ import coil.decode.ImageDecoderDecoder
 import com.jmc.paymentapp.R
 import com.jmc.paymentapp.features.payment.domain.model.PaymentModelUi
 
-//@Preview(showBackground = true)
 @Composable
-fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit = { _,_ -> }) {
+fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit = { _, _ -> }) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(90.dp),
+            .height(90.dp)
+            .padding(start = 10.dp, end = 10.dp, bottom = 5.dp),
         elevation = 4.dp,
         shape = RoundedCornerShape(14.dp),
         backgroundColor = Color.White,
@@ -78,13 +78,10 @@ fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit
                 is AsyncImagePainter.State.Error -> ColorFilter.tint(tintColor)
                 else -> null
             }
-            val scale =
-                if (painter.state !is AsyncImagePainter.State.Success) ContentScale.Fit else ContentScale.FillBounds
-
 
             Image(
                 painter = painter,
-                contentDescription = "",
+                contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(80.dp)
@@ -111,29 +108,9 @@ fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit
                 color = Color.Black
             )
 
-            /* Text(
-                 text = "item.text",
-                 style = MaterialTheme.typography.subtitle2,
-                 maxLines = 2,
-                 modifier = Modifier
-                     .constrainAs(subtitle2) {
-                         start.linkTo(image.end, 10.dp)
-                         end.linkTo(btnClose.start)
-                         bottom.linkTo(parent.bottom)
- //                        linkTo(start = title.start, end = starButton.start)
-                         width = Dimension.fillToConstraints
-                     }
-                     .alpha(0.6f),
-                 color = Color.Black,
-                 fontSize = 10.sp,
-
-
-             )*/
-
-
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_arrow_forward_ios_24),
-                contentDescription = "",
+                contentDescription = null,
                 modifier = Modifier
                     .wrapContentSize()
                     .padding(top = 10.dp)

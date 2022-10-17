@@ -9,9 +9,13 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.jmc.paymentapp.R
 import com.jmc.paymentapp.features.installments.presentation.InstallmentViewModel
 import com.jmc.paymentapp.features.installments.presentation.contract.InstallmentContract
 import com.jmc.paymentapp.navigation.Screens
@@ -20,11 +24,10 @@ import com.jmc.theme.colorPrimary
 import com.jmc.theme.white
 import com.jmc.uicomponent.LoadingScreen
 
-//@Preview(showBackground = true)
 @Composable
 fun InstallmentScreen(
     navController: NavHostController,
-    monto: String,
+    amount: String,
     idPayment: String,
     namePayment: String,
     issuerId: String,
@@ -37,7 +40,7 @@ fun InstallmentScreen(
     if (state.list.isNullOrEmpty()) {
         viewModel.setEvent(
             InstallmentContract.Event.CallInstallments(
-                amount = monto,
+                amount = amount,
                 idPayment = idPayment,
                 issuerId = issuerId
             )
@@ -45,7 +48,7 @@ fun InstallmentScreen(
     }
     LoadingScreen(isLoading = viewModel.state.isLoading) {
         Content(
-            monto = monto,
+            amount = amount,
             namePayment = namePayment,
             nameBank = nameBank,
             image = image,
@@ -57,7 +60,7 @@ fun InstallmentScreen(
 
 @Composable
 private fun Content(
-    monto: String,
+    amount: String,
     namePayment: String,
     nameBank: String,
     image: String,
@@ -71,7 +74,7 @@ private fun Content(
 
         Scaffold(topBar = {
             TopAppBar(
-                title = { Text(text = "Opciones de Cuotas") },
+                title = { Text(text = stringResource(R.string.title_quotas)) },
                 backgroundColor = colorPrimary,
                 navigationIcon = {
 
@@ -82,13 +85,25 @@ private fun Content(
                             tint = white
                         )
                     }
-
                 })
 
         }, content = {
             Column {
-                Text(text = "Seleccione su opcion de cuotas", color = black)
-                Spacer(modifier = Modifier.padding(10.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.subtitle_quotas),
+                        style = MaterialTheme.typography.h6.copy(fontSize = 18.sp),
+                        modifier = Modifier
+                            .padding(top = 10.dp),
+                        color = Color.Black
+                    )
+                }
+                Spacer(modifier = Modifier.padding(5.dp))
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
@@ -98,7 +113,7 @@ private fun Content(
                         ItemInstallmentRow(item = state.list[index], onItemClicked = { msg ->
                             navController.navigate(
                                 Screens.ResumeScreen.route +
-                                        "?param=$monto,$namePayment,$nameBank,$image,$msg"
+                                        "?param=$amount,$namePayment,$nameBank,$image,$msg"
                             )
                         })
                     }
@@ -120,9 +135,10 @@ private fun Content(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Monto: $monto Medio: $namePayment")
-//                    Text(text = "asasasasas")
-
+                    Text(
+                        text = stringResource(R.string.txt_amount) + amount +" "
+                                + stringResource(R.string.txt_payment) + namePayment
+                    )
                 }
             }
         }

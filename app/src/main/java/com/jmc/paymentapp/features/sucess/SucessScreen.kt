@@ -34,7 +34,7 @@ import com.jmc.theme.white
 @Composable
 fun SucessScreen(
      navController: NavHostController,
-     monto: String,
+     amount: String,
      namePayment: String,
      nameBank: String,
      image: String,
@@ -93,14 +93,14 @@ fun SucessScreen(
                             .padding(start = 10.dp, bottom = 50.dp)
                     ) {
                         Text(
-                            text = "Monto:",
+                            text = stringResource(R.string.resume_amount),
                             style = MaterialTheme.typography.h6.copy(fontSize = 14.sp),
                             modifier = Modifier
                                 .padding(top = 10.dp),
                             color = Color.Black
                         )
                         Text(
-                            text = "$ $monto",
+                            text = "$ $amount",
                             style = MaterialTheme.typography.subtitle1.copy(fontSize = 14.sp),
                             modifier = Modifier
                                 .padding(top = 10.dp),
@@ -150,7 +150,7 @@ fun SucessScreen(
                         }
                         Spacer(modifier = Modifier.padding(10.dp))
                         Text(
-                            text = "Banco:",
+                            text = stringResource(R.string.resume_bank),
                             style = MaterialTheme.typography.h6.copy(fontSize = 14.sp),
                             modifier = Modifier
                                 .padding(top = 10.dp),
@@ -165,7 +165,7 @@ fun SucessScreen(
                         )
                         Spacer(modifier = Modifier.padding(10.dp))
                         Text(
-                            text = "Cuotas:",
+                            text = stringResource(R.string.resume_quota),
                             style = MaterialTheme.typography.h6.copy(fontSize = 14.sp),
                             modifier = Modifier
                                 .padding(top = 10.dp),
@@ -196,7 +196,7 @@ fun SucessScreen(
                             shape = RoundedCornerShape(16.dp)
                         ) {
                             Text(
-                                text = "Confirmar",
+                                text = stringResource(R.string.btn_confirm),
                                 color = white,
                                 style = MaterialTheme.typography.button,
                                 modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)

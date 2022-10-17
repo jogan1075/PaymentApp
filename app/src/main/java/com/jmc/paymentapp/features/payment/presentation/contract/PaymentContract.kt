@@ -8,17 +8,13 @@ import com.jmc.paymentapp.features.payment.domain.model.PaymentModelUi
 class PaymentContract {
 
     sealed class Event : ViewEvent {
-        object GetPaymentMethod : Event()
-        data class AmountChanged(val amount: String) : Event()
-//        data class NavControllerEvent(val navController: NavController) : Event()
+
     }
 
     data class State(
         override val isLoading: Boolean = false,
-        /*val isLoading: Boolean = false,*/
         val list: List<PaymentModelUi>? = listOf(),
         val idPayment: String? = null,
-//        val navController: NavController? =null,
         val error: String? = null
     ) : ViewState {
 

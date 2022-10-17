@@ -1,30 +1,28 @@
 package com.jmc.paymentapp.features.amount
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AttachMoney
-import androidx.compose.runtime.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.jmc.paymentapp.R
 import com.jmc.paymentapp.features.amount.contract.AmountContract
 import com.jmc.paymentapp.navigation.Screens
 import com.jmc.theme.colorPrimary
 import com.jmc.theme.dark_gray
-import com.jmc.theme.light_gray
 import com.jmc.theme.white
 import com.jmc.uicomponent.TextField
 
-//@Preview(showBackground = true)
 @Composable
 fun AmountScreen(navController: NavHostController) {
     val viewModel = hiltViewModel<AmountViewModel>()
@@ -42,7 +40,7 @@ fun AmountScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Ingrese el monto",
+                text = stringResource(R.string.label_add_amount),
                 style = MaterialTheme.typography.subtitle1,
                 color = dark_gray,
                 modifier = Modifier.padding(
@@ -51,14 +49,14 @@ fun AmountScreen(navController: NavHostController) {
                 )
             )
 
-
             InputAmount(viewModel::setEvent)
 
             Button(
                 onClick = {
-                    navController.navigate(Screens.PaymentMethodScreen.route +"?param=${state.amount.toString()}")
-//                    Toast.makeText(contextGral, "Test", Toast.LENGTH_SHORT).show()
-//                            validateUserPass(mAuth, navController, useremail, password, activity)
+                    navController.navigate(
+                        Screens.PaymentMethodScreen.route +
+                                "?param=${state.amount.toString()}"
+                    )
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = colorPrimary),
                 modifier = Modifier
@@ -70,7 +68,7 @@ fun AmountScreen(navController: NavHostController) {
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(
-                    text = "Forma de Pago",
+                    text = stringResource(R.string.btn_next),
                     color = white,
                     style = MaterialTheme.typography.button,
                     modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
@@ -83,51 +81,12 @@ fun AmountScreen(navController: NavHostController) {
 @Composable
 private fun InputAmount(onEventSent: (AmountContract.Event) -> Unit) {
 
-    TextField(hint = "Ingrese monto aqui", label = "Monto", onValueChange = {
-        onEventSent(AmountContract.Event.AmountChanged(it))
-    }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
-
-
-   /* TextField(
-        leadingIcon = {
-            Row(
-                modifier = Modifier.wrapContentWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                content = {
-                    Icon(
-                        imageVector = Icons.Default.AttachMoney,
-                        contentDescription = null,
-                        tint = colorPrimary
-                    )
-                    Canvas(
-                        modifier = Modifier
-                            .height(24.dp)
-                            .padding(start = 10.dp)
-                    ) {
-                        drawLine(
-                            color = light_gray,
-                            start = Offset(0f, 0f),
-                            end = Offset(0f, size.height),
-                            strokeWidth = 2.0F
-                        )
-                    }
-                }
-            )
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = white,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
-        ),
-        modifier = Modifier
-            .fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        label = { Text(text = "Monto") },
-        shape = RoundedCornerShape(8.dp),
+    TextField(
+        hint = stringResource(R.string.hint_input),
+        label = stringResource(R.string.label_amount),
         onValueChange = {
-//                    amount = it
-            AmountContract.Event.AmountChanged(it)
-        }
-    )*/
+            onEventSent(AmountContract.Event.AmountChanged(it))
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+    )
 }

@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -27,25 +26,28 @@ import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.ImageLoader
-import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.jmc.paymentapp.R
 import com.jmc.paymentapp.features.banks.domain.model.BankModelUi
 
-//@Preview(showBackground = true)
+
 @Composable
-fun ItemBankRow(item: BankModelUi, onItemClicked: (String, String, String) -> Unit = {  _,_,_ ->}) {
+fun ItemBankRow(
+    item: BankModelUi,
+    onItemClicked: (String, String, String) -> Unit = { _, _, _ -> }
+) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(90.dp),
+            .height(90.dp)
+            .padding(5.dp),
         elevation = 4.dp,
         shape = RoundedCornerShape(14.dp),
         backgroundColor = Color.White,
-        onClick = { onItemClicked(item.id, item.secureThumbnail,item.name) }
+        onClick = { onItemClicked(item.id, item.secureThumbnail, item.name) }
     ) {
 
         ConstraintLayout() {
@@ -73,18 +75,10 @@ fun ItemBankRow(item: BankModelUi, onItemClicked: (String, String, String) -> Un
                 placeholder = rememberVectorPainter(Icons.Default.Movie),
                 imageLoader = imageLoader
             )
-            val colorFilter = when (painter.state) {
-                is AsyncImagePainter.State.Loading -> ColorFilter.tint(tintColor)
-                is AsyncImagePainter.State.Error -> ColorFilter.tint(tintColor)
-                else -> null
-            }
-            val scale =
-                if (painter.state !is AsyncImagePainter.State.Success) ContentScale.Fit else ContentScale.FillBounds
-
 
             Image(
                 painter = painter,
-                contentDescription = "",
+                contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(80.dp)
@@ -111,29 +105,9 @@ fun ItemBankRow(item: BankModelUi, onItemClicked: (String, String, String) -> Un
                 color = Color.Black
             )
 
-            /* Text(
-                 text = "item.text",
-                 style = MaterialTheme.typography.subtitle2,
-                 maxLines = 2,
-                 modifier = Modifier
-                     .constrainAs(subtitle2) {
-                         start.linkTo(image.end, 10.dp)
-                         end.linkTo(btnClose.start)
-                         bottom.linkTo(parent.bottom)
- //                        linkTo(start = title.start, end = starButton.start)
-                         width = Dimension.fillToConstraints
-                     }
-                     .alpha(0.6f),
-                 color = Color.Black,
-                 fontSize = 10.sp,
-
-
-             )*/
-
-
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_arrow_forward_ios_24),
-                contentDescription = "",
+                contentDescription = null,
                 modifier = Modifier
                     .wrapContentSize()
                     .padding(top = 10.dp)

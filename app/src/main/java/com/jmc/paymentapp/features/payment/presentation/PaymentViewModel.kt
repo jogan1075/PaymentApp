@@ -22,9 +22,8 @@ class PaymentViewModel @Inject constructor(
     init {
         launch {
             setState { copy(isLoading = true).clearErrors() }
-            val persons =  userUseCase.execute()
-            persons
-            setState { copy(isLoading = false, list = persons) }
+            val listPayments =  userUseCase.execute()
+            setState { copy(isLoading = false, list = listPayments) }
         }
     }
 
@@ -33,20 +32,6 @@ class PaymentViewModel @Inject constructor(
     }
 
     override fun handleEvents(intent: PaymentContract.Event) {
-        when (intent) {
-         /*   is PaymentContract.Event.GetPaymentMethod -> {
-                viewModelScope.launch(RepositoryCoroutineHandler(::handleError)) {
-                    setState { copy(isLoading = true).clearErrors() }
-                    userUseCase.execute()
-//                    goToDashboard()
-                    setState { copy(isLoading = false) }
-                }
-            }*/
-//            is CastContract.Event.EmailChanged -> setState { copy(email = intent.email).clearErrors() }
-//            is CastContract.Event.PasswordChanged -> setState { copy(password = intent.password).clearErrors() }
-//            is CastContract.Event.NavControllerEvent -> setState { copy(navController = intent.navController).clearErrors() }
-//            is PaymentContract.Event.AmountChanged -> setState { copy(amount = intent.amount).clearErrors() }
-        }
     }
 
     private fun handleError(domainError: DomainError) {

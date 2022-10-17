@@ -29,7 +29,7 @@ fun Navigation(activity: Activity) {
         { backStackEntry ->
             PaymentMethodScreen(
                 navController = navController,
-                monto = backStackEntry.arguments?.getString("amount")
+                amount = backStackEntry.arguments?.getString("amount")
                     .toString()
             )
         }
@@ -58,7 +58,7 @@ fun Navigation(activity: Activity) {
                 navController = navController,
                 idPayment = backStackEntry.arguments?.getString("idPayment")
                     .toString(),
-                monto = backStackEntry.arguments?.getString("amount")
+                amount = backStackEntry.arguments?.getString("amount")
                     .toString(),
                 issuerId = backStackEntry.arguments?.getString("issuerId")
                     .toString(),
@@ -81,7 +81,7 @@ fun Navigation(activity: Activity) {
                 navController = navController,
                 nameRecomendMessage = backStackEntry.arguments?.getString("nameRecommendedMessage")
                     .toString(),
-                monto = backStackEntry.arguments?.getString("amount")
+                amount = backStackEntry.arguments?.getString("amount")
                     .toString(),
                 namePayment = backStackEntry.arguments?.getString("namePayment")
                     .toString(),

@@ -7,31 +7,34 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.jmc.paymentapp.R
 import com.jmc.paymentapp.features.payment.presentation.PaymentViewModel
 import com.jmc.paymentapp.features.payment.presentation.contract.PaymentContract
 import com.jmc.paymentapp.navigation.Screens
-import com.jmc.theme.black
 import com.jmc.theme.colorPrimary
 import com.jmc.theme.white
 import com.jmc.uicomponent.LoadingScreen
 
-//@Preview(showBackground = true)
 @Composable
-fun PaymentMethodScreen(navController: NavHostController, monto: String) {
+fun PaymentMethodScreen(navController: NavHostController, amount: String) {
     val viewModel = hiltViewModel<PaymentViewModel>()
     val state = viewModel.viewState.value
 
     LoadingScreen(isLoading = viewModel.state.isLoading) {
-        Content(monto = monto, state = state, navController = navController)
+        Content(amount = amount, state = state, navController = navController)
     }
 }
 
 @Composable
-private fun Content(monto: String, state: PaymentContract.State, navController: NavHostController) {
+private fun Content(amount: String, state: PaymentContract.State, navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +42,7 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
 
         Scaffold(topBar = {
             TopAppBar(
-                title = { Text(text = "ASASAS") },
+                title = { Text(text = stringResource(R.string.title_payment)) },
                 backgroundColor = colorPrimary,
                 navigationIcon = {
 
@@ -54,17 +57,32 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                 })
         }, content = {
             Column {
-                Text(text = "Seleccione el Medio de Pago", color = black)
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        ,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.subtitle_payment),
+                        style = MaterialTheme.typography.h6.copy(fontSize = 18.sp),
+                        modifier = Modifier
+                            .padding(top = 10.dp),
+                        color = Color.Black
+                    )
+                }
                 Spacer(modifier = Modifier.padding(10.dp))
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(bottom = 50.dp)
                 ) {
-                    items(state.list?.size!!) { index ->
-                        ItemPaymentRow(item = state.list[index], onItemClicked = { id, name ->
+                    val listOrder= state.list?.sortedBy { it.name }
+                    items(listOrder?.size!!) { index ->
+                        ItemPaymentRow(item = listOrder[index], onItemClicked = { id, name ->
                             navController.navigate(
-                                Screens.BankListScreen.route + "?param=${id},${name},${monto}"
+                                Screens.BankListScreen.route + "?param=${id},${name},${amount}"
                             )
                         })
                     }
@@ -79,10 +97,16 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                     .background(colorPrimary),
                 elevation = 5.dp
             ) {
-                Column(modifier = Modifier.background(colorPrimary)) {
-                    Text(text = "Monto: $" + monto)
-//                    Text(text = "asasasasas")
-
+                Column(
+                    modifier = Modifier
+                        .background(colorPrimary)
+                        .padding(start = 10.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = stringResource(R.string.txt_amount) + amount
+                    )
                 }
             }
         }

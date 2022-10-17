@@ -18,22 +18,7 @@ class AmountViewModel @Inject constructor(stateHandle: SavedStateHandle) :
 
     override fun handleEvents(intent: AmountContract.Event) {
         when (intent) {
-//            is CastContract.Event.UserLogin -> {
-//                viewModelScope.launch(RepositoryCoroutineHandler(::handleError)) {
-//                    setState { copy(isLoading = true).clearErrors() }
-////                    userUseCase.execute("")
-////                    goToDashboard()
-//                    setState { copy(isLoading = false) }
-//                }
-//            }
-//            is CastContract.Event.EmailChanged -> setState { copy(email = intent.email).clearErrors() }
-//            is CastContract.Event.PasswordChanged -> setState { copy(password = intent.password).clearErrors() }
-//            is CastContract.Event.NavControllerEvent -> setState { copy(navController = intent.navController).clearErrors() }
             is AmountContract.Event.AmountChanged -> setState { copy(amount = intent.amount).clearErrors() }
         }
-    }
-
-    private fun handleError(domainError: DomainError) {
-        setState { copy(isLoading = false, error = "error =)") }
     }
 }

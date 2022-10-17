@@ -7,18 +7,13 @@ import com.jmc.mvi.ViewState
 class AmountContract {
 
     sealed class Event : ViewEvent {
-//        object UserLogin : Event()
         data class AmountChanged(val amount: String) : Event()
-//        data class NavControllerEvent(val navController: NavController) : Event()
     }
 
     data class State(
         override val isLoading: Boolean = false,
-        /*val isLoading: Boolean = false,*/
         val amount: String? = null,
-//        val password: String? = null,
         val errorAmount: String? = null,
-//        val navController: NavController? =null,
         val error: String? = null
     ) : ViewState {
 

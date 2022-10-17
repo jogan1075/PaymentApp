@@ -1,6 +1,7 @@
 package com.jmc.paymentapp.features.payment.view.di
 
 import android.content.Context
+import com.jmc.network.Constans.URL_HOST
 import com.jmc.network.RetrofitWebServiceFactory
 import com.jmc.paymentapp.features.payment.data.PaymentDataRepository
 import com.jmc.paymentapp.features.payment.data.remote.PaymentRemoteImpl
@@ -24,10 +25,6 @@ object PaymentModule {
     @Provides
     fun bindDataRepository(dataRepository: PaymentDataRepository): PaymentRepository = dataRepository
 
-//    @Provides
-//    fun provideDataSourceFactory(remote: Remote): Remote = remote
-
-
     @Provides
     @Singleton
     fun provideWebServiceRetrofit(@ApplicationContext context: Context): PaymentApi =
@@ -35,6 +32,6 @@ object PaymentModule {
             isDebug = true,
             tClass = PaymentApi::class.java,
             context = context,
-            baseUrl = "https://api.mercadopago.com/v1/"
+            baseUrl = URL_HOST
         )
 }

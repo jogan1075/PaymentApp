@@ -9,8 +9,10 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.jmc.paymentapp.R
@@ -77,8 +79,21 @@ private fun Content(
                 })
         }, content = {
             Column {
-                Text(text = stringResource(R.string.subtitle_bank), color = black)
-                Spacer(modifier = Modifier.padding(10.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.subtitle_bank),
+                        style = MaterialTheme.typography.h6.copy(fontSize = 18.sp),
+                        modifier = Modifier
+                            .padding(top = 10.dp),
+                        color = Color.Black
+                    )
+                }
+                Spacer(modifier = Modifier.padding(5.dp))
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
@@ -112,9 +127,10 @@ private fun Content(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Monto: $amount Medio: $namePayment")
-//                    Text(text = "asasasasas")
-
+                    Text(
+                        text = stringResource(R.string.txt_amount) + amount
+                                + " " + stringResource(R.string.txt_payment) + namePayment
+                    )
                 }
             }
         }

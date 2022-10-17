@@ -3,24 +3,22 @@ package com.jmc.paymentapp.features.installments.presentation.contract
 import com.jmc.mvi.ViewEvent
 import com.jmc.mvi.ViewSideEffect
 import com.jmc.mvi.ViewState
-import com.jmc.paymentapp.features.installments.data.remote.model.InstallmentOption
-import com.jmc.paymentapp.features.installments.domain.model.InstallmentModelUi
 import com.jmc.paymentapp.features.installments.domain.model.PayerCostUI
-import com.jmc.paymentapp.features.payment.domain.model.PaymentModelUi
 
 class InstallmentContract {
 
     sealed class Event : ViewEvent {
-
-        data class CallInstallments(val amount: String, val idPayment: String, val issuerId: String) : Event()
+        data class CallInstallments(
+            val amount: String,
+            val idPayment: String,
+            val issuerId: String
+        ) : Event()
     }
 
     data class State(
         override val isLoading: Boolean = false,
-        /*val isLoading: Boolean = false,*/
         val list: List<PayerCostUI>? = listOf(),
         val idPayment: String? = null,
-//        val navController: NavController? =null,
         val error: String? = null
     ) : ViewState {
 

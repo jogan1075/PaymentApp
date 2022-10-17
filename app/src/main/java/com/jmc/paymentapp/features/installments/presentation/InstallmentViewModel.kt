@@ -5,8 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.jmc.mvi.BaseVM
 import com.jmc.paymentapp.features.installments.domain.GetInstallmentsUseCase
 import com.jmc.paymentapp.features.installments.presentation.contract.InstallmentContract
-import com.jmc.paymentapp.features.payment.domain.GetPaymentsMethodsUseCase
-import com.jmc.paymentapp.features.payment.presentation.contract.PaymentContract
 import com.jmc.utils.errors.DomainError
 import com.jmc.utils.exceptions.RepositoryCoroutineHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,23 +24,14 @@ class InstallmentViewModel @Inject constructor(
 
     override fun handleEvents(intent: InstallmentContract.Event) {
         when (intent) {
-         /*   is PaymentContract.Event.GetPaymentMethod -> {
-                viewModelScope.launch(RepositoryCoroutineHandler(::handleError)) {
-                    setState { copy(isLoading = true).clearErrors() }
-                    userUseCase.execute()
-//                    goToDashboard()
-                    setState { copy(isLoading = false) }
-                }
-            }*/
-//            is CastContract.Event.EmailChanged -> setState { copy(email = intent.email).clearErrors() }
-//            is CastContract.Event.PasswordChanged -> setState { copy(password = intent.password).clearErrors() }
-//            is CastContract.Event.NavControllerEvent -> setState { copy(navController = intent.navController).clearErrors() }
-//            is PaymentContract.Event.AmountChanged -> setState { copy(amount = intent.amount).clearErrors() }
             is InstallmentContract.Event.CallInstallments -> {
                 viewModelScope.launch(RepositoryCoroutineHandler(::handleError)) {
                     setState { copy(isLoading = true).clearErrors() }
-                    val quotas = userUseCase.execute(id = intent.idPayment, amount = intent.amount.toDouble(), issuerId = intent.issuerId)
-                    quotas
+                    val quotas = userUseCase.execute(
+                        id = intent.idPayment,
+                        amount = intent.amount.toDouble(),
+                        issuerId = intent.issuerId
+                    )
                     setState { copy(isLoading = false, list = quotas) }
                 }
             }
