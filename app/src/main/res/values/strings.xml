@@ -2,4 +2,6 @@
     <string name="app_name">PaymentApp</string>
     <string name="title_bank">Seleccion de Banco</string>
     <string name="subtitle_bank">Seleccione su Banco</string>
+    <string name="title_resume">Resumen</string>
+    <string name="subtitle_resume">Seleccione su opcion de cuotas</string>
 </resources>

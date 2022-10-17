@@ -11,7 +11,8 @@ import javax.inject.Inject
 class InstallmentMapper @Inject constructor() :
     Mapper<InstallmentOption, InstallmentModelUi> {
 
-    override fun map(input: InstallmentOption) = InstallmentModelUi(payerCosts = input.payerCosts)
+    override fun map(input: InstallmentOption) =
+        InstallmentModelUi(issuer = input.issuer, payerCosts = input.payerCosts)
 
 }
 

@@ -27,7 +27,9 @@ fun InstallmentScreen(
     monto: String,
     idPayment: String,
     namePayment: String,
-    issuerId: String
+    issuerId: String,
+    nameBank: String,
+    image: String
 ) {
     val viewModel = hiltViewModel<InstallmentViewModel>()
     val state = viewModel.viewState.value
@@ -42,7 +44,14 @@ fun InstallmentScreen(
         )
     }
     LoadingScreen(isLoading = viewModel.state.isLoading) {
-        Content(monto = monto,namePayment, state = state, navController = navController)
+        Content(
+            monto = monto,
+            namePayment = namePayment,
+            nameBank = nameBank,
+            image = image,
+            state = state,
+            navController = navController
+        )
     }
 }
 
@@ -50,6 +59,8 @@ fun InstallmentScreen(
 private fun Content(
     monto: String,
     namePayment: String,
+    nameBank: String,
+    image: String,
     state: InstallmentContract.State,
     navController: NavHostController
 ) {
@@ -84,9 +95,10 @@ private fun Content(
                         .padding(bottom = 50.dp)
                 ) {
                     items(state.list?.size!!) { index ->
-                        ItemInstallmentRow(item = state.list[index], onItemClicked = { id ->
+                        ItemInstallmentRow(item = state.list[index], onItemClicked = { msg ->
                             navController.navigate(
-                                Screens.BankListScreen.route + "?param=$id"
+                                Screens.ResumeScreen.route +
+                                        "?param=$monto,$namePayment,$nameBank,$image,$msg"
                             )
                         })
                     }
@@ -102,7 +114,9 @@ private fun Content(
                 elevation = 5.dp
             ) {
                 Column(
-                    modifier = Modifier.background(colorPrimary).padding(start = 10.dp),
+                    modifier = Modifier
+                        .background(colorPrimary)
+                        .padding(start = 10.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.Start
                 ) {

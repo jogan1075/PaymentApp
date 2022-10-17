@@ -6,9 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jmc.paymentapp.features.amount.AmountScreen
-import com.jmc.paymentapp.features.banks.BankScreen
+import com.jmc.paymentapp.features.banks.view.BankScreen
 import com.jmc.paymentapp.features.installments.view.InstallmentScreen
 import com.jmc.paymentapp.features.payment.view.PaymentMethodScreen
+import com.jmc.paymentapp.features.sucess.SucessScreen
 
 @Composable
 fun Navigation(activity: Activity) {
@@ -49,7 +50,8 @@ fun Navigation(activity: Activity) {
         }
 
         composable(
-            Screens.InstallmentsScreen.route + "?param={idPayment},{amount},{issuerId},{namePayment}"
+            Screens.InstallmentsScreen.route +
+                    "?param={idPayment},{amount},{issuerId},{namePayment},{nameBank},{img}"
         )
         { backStackEntry ->
             InstallmentScreen(
@@ -61,6 +63,31 @@ fun Navigation(activity: Activity) {
                 issuerId = backStackEntry.arguments?.getString("issuerId")
                     .toString(),
                 namePayment = backStackEntry.arguments?.getString("namePayment")
+                    .toString(),
+                nameBank =backStackEntry.arguments?.getString("nameBank")
+                    .toString(),
+                image =backStackEntry.arguments?.getString("img")
+                    .toString()
+            )
+        }
+
+
+        composable(
+            Screens.ResumeScreen.route +
+                    "?param={amount},{namePayment},{nameBank},{img},{nameRecommendedMessage}"
+        )
+        { backStackEntry ->
+            SucessScreen(
+                navController = navController,
+                nameRecomendMessage = backStackEntry.arguments?.getString("nameRecommendedMessage")
+                    .toString(),
+                monto = backStackEntry.arguments?.getString("amount")
+                    .toString(),
+                namePayment = backStackEntry.arguments?.getString("namePayment")
+                    .toString(),
+                nameBank =backStackEntry.arguments?.getString("nameBank")
+                    .toString(),
+                image =backStackEntry.arguments?.getString("img")
                     .toString()
             )
         }

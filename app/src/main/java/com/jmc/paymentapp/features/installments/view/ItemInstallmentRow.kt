@@ -47,11 +47,10 @@ fun ItemInstallmentRow(item: PayerCostUI, onItemClicked: (String) -> Unit = {}) 
         elevation = 4.dp,
         shape = RoundedCornerShape(14.dp),
         backgroundColor = Color.White,
-        onClick = { /*onItemClicked(item.paymentTypeId)*/ }
+        onClick = { onItemClicked(item.recommendedMessage) }
     ) {
 
         ConstraintLayout() {
-            val tintColor = if (MaterialTheme.colors.isLight) Color.Gray else Color.DarkGray
             val (image, title, subtitle, subtitle2, btnClose) = createRefs()
             createVerticalChain(
                 title,
@@ -59,79 +58,19 @@ fun ItemInstallmentRow(item: PayerCostUI, onItemClicked: (String) -> Unit = {}) 
                 subtitle2,
                 chainStyle = ChainStyle.Packed
             )
-            val imageLoader = ImageLoader.Builder(LocalContext.current)
-                .components {
-                    if (SDK_INT >= 28) {
-                        add(ImageDecoderDecoder.Factory())
-                    } else {
-                        add(GifDecoder.Factory())
-                    }
-                }
-                .build()
-
-            val painter = rememberAsyncImagePainter(
-                model = "item.secureThumbnail",
-                error = rememberVectorPainter(Icons.Filled.BrokenImage),
-                placeholder = rememberVectorPainter(Icons.Default.Movie),
-                imageLoader = imageLoader
-            )
-            val colorFilter = when (painter.state) {
-                is AsyncImagePainter.State.Loading -> ColorFilter.tint(tintColor)
-                is AsyncImagePainter.State.Error -> ColorFilter.tint(tintColor)
-                else -> null
-            }
-            val scale =
-                if (painter.state !is AsyncImagePainter.State.Success) ContentScale.Fit else ContentScale.FillBounds
-
-
-            Image(
-                painter = painter,
-                contentDescription = "",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(CircleShape)
-                    .border(2.dp, Color.Gray, CircleShape)
-                    .constrainAs(image) {
-                        top.linkTo(anchor = title.top)
-                        start.linkTo(parent.start, 10.dp)
-                        bottom.linkTo(anchor = subtitle2.bottom)
-                    }
-            )
-
             Text(
                 text = item.recommendedMessage,
                 style = MaterialTheme.typography.h6.copy(fontSize = 14.sp),
                 modifier = Modifier
                     .padding(top = 10.dp)
                     .constrainAs(title) {
-                        start.linkTo(image.end, 10.dp)
+                        start.linkTo(parent.start,10.dp)
                         top.linkTo(parent.top, 10.dp)
                         end.linkTo(btnClose.start)
                         width = Dimension.fillToConstraints
                     },
                 color = Color.Black
             )
-
-            /* Text(
-                 text = "item.text",
-                 style = MaterialTheme.typography.subtitle2,
-                 maxLines = 2,
-                 modifier = Modifier
-                     .constrainAs(subtitle2) {
-                         start.linkTo(image.end, 10.dp)
-                         end.linkTo(btnClose.start)
-                         bottom.linkTo(parent.bottom)
- //                        linkTo(start = title.start, end = starButton.start)
-                         width = Dimension.fillToConstraints
-                     }
-                     .alpha(0.6f),
-                 color = Color.Black,
-                 fontSize = 10.sp,
-
-
-             )*/
-
 
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_arrow_forward_ios_24),

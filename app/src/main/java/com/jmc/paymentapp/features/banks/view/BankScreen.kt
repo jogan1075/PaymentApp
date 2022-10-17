@@ -1,4 +1,4 @@
-package com.jmc.paymentapp.features.banks
+package com.jmc.paymentapp.features.banks.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -66,7 +66,7 @@ private fun Content(
                 backgroundColor = colorPrimary,
                 navigationIcon = {
 
-                    IconButton(onClick = {navController.popBackStack() }) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back",
@@ -85,11 +85,14 @@ private fun Content(
                         .padding(bottom = 50.dp)
                 ) {
                     items(state.list?.size!!) { index ->
-                        ItemBankRow(item = state.list[index], onItemClicked = { idIssuer ->
-                            navController.navigate(
-                                Screens.InstallmentsScreen.route + "?param=$idPayment,$amount,$idIssuer,$namePayment"
-                            )
-                        })
+                        ItemBankRow(
+                            item = state.list[index],
+                            onItemClicked = { idIssuer, img, nameBank ->
+                                navController.navigate(
+                                    Screens.InstallmentsScreen.route +
+                                            "?param=$idPayment,$amount,$idIssuer,$namePayment,$nameBank,$img"
+                                )
+                            })
                     }
                 }
             }
@@ -102,9 +105,13 @@ private fun Content(
                     .background(colorPrimary),
                 elevation = 5.dp
             ) {
-                Column(modifier = Modifier.background(colorPrimary).padding(start = 10.dp),
+                Column(
+                    modifier = Modifier
+                        .background(colorPrimary)
+                        .padding(start = 10.dp),
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.Start) {
+                    horizontalAlignment = Alignment.Start
+                ) {
                     Text(text = "Monto: $amount Medio: $namePayment")
 //                    Text(text = "asasasasas")
 

@@ -1,4 +1,4 @@
-package com.jmc.paymentapp.features.banks
+package com.jmc.paymentapp.features.banks.view
 
 import android.os.Build.VERSION.SDK_INT
 import androidx.compose.foundation.Image
@@ -36,7 +36,7 @@ import com.jmc.paymentapp.features.banks.domain.model.BankModelUi
 
 //@Preview(showBackground = true)
 @Composable
-fun ItemBankRow(item: BankModelUi, onItemClicked: (String) -> Unit = {}) {
+fun ItemBankRow(item: BankModelUi, onItemClicked: (String, String, String) -> Unit = {  _,_,_ ->}) {
 
     Card(
         modifier = Modifier
@@ -45,7 +45,7 @@ fun ItemBankRow(item: BankModelUi, onItemClicked: (String) -> Unit = {}) {
         elevation = 4.dp,
         shape = RoundedCornerShape(14.dp),
         backgroundColor = Color.White,
-        onClick = { onItemClicked(item.id) }
+        onClick = { onItemClicked(item.id, item.secureThumbnail,item.name) }
     ) {
 
         ConstraintLayout() {
