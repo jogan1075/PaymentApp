@@ -9,7 +9,7 @@ This project brings to the table set of best practices, tools, and solutions:
 
 * 100% [Kotlin](https://kotlinlang.org/)
 * Modern architecture (Clean Architecture, Multi-Module setup, Model-View-Intent)
-* [Android Jetpack](https://developer.android.com/jetpack/compose)
+* [Android Jetpack Compose](https://developer.android.com/jetpack/compose)
 * Single-activity architecture
 * Dependency Injection ([Hilt](https://dagger.dev/hilt/))
 * Material Design
@@ -31,6 +31,7 @@ This project brings to the table set of best practices, tools, and solutions:
 
 Future plans
 -------
+- Step Finished Testing
 - Step by step migration to architecture modular
 
 Other things feel free to request using issues
