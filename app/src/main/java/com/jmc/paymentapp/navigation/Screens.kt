@@ -9,9 +9,7 @@ sealed class Screens (val route: String){
 
     object BankListScreen : Screens("bank_screen/{IdPayment}")
 
-    object InstallmentsScreen : Screens("installments_screen/{params}") {
-        fun addArgument(params: String) = "details_screen/$params"
-    }
+    object InstallmentsScreen : Screens("installments_screen/{params}")
 
     object ResumeScreen : Screens("add_to_cart_screen")
 

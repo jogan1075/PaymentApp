@@ -52,34 +52,6 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                     }
 
                 })
-            /*  Row(
-                  modifier = Modifier
-                      .padding(top = 16.dp)
-                      .fillMaxWidth(),
-                  horizontalArrangement = Arrangement.SpaceBetween,
-                  verticalAlignment = Alignment.CenterVertically
-              ) {
-                  IconButton(onClick = { }) {
-                      Icon(
-                          modifier = Modifier.size(32.dp, 32.dp),
-                          imageVector = Icons.Default.KeyboardArrowLeft,
-                          contentDescription = "",
-                          tint = black
-                      )
-                  }
-
-                  Text(
-                      text = "Register",
-                      color = black,
-                      modifier = Modifier
-                          .padding(end = 48.dp)
-                          .fillMaxWidth(),
-                      fontWeight = FontWeight.Bold,
-                      textAlign = TextAlign.Center,
-                      fontSize = 16.sp,
-                  )
-
-              }*/
         }, content = {
             Column {
                 Text(text = "Seleccione el Medio de Pago", color = black)
@@ -90,8 +62,11 @@ private fun Content(monto: String, state: PaymentContract.State, navController: 
                         .padding(bottom = 50.dp)
                 ) {
                     items(state.list?.size!!) { index ->
-                        ItemPaymentRow(item = state.list[index], onItemClicked ={ id -> navController.navigate(
-                            Screens.BankListScreen.route + "?param=$id") }  )
+                        ItemPaymentRow(item = state.list[index], onItemClicked = { id, name ->
+                            navController.navigate(
+                                Screens.BankListScreen.route + "?param=${id},${name},${monto}"
+                            )
+                        })
                     }
                 }
             }

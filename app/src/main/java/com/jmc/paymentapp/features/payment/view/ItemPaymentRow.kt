@@ -36,7 +36,7 @@ import com.jmc.paymentapp.features.payment.domain.model.PaymentModelUi
 
 //@Preview(showBackground = true)
 @Composable
-fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String) -> Unit = {}) {
+fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit = { _,_ -> }) {
 
     Card(
         modifier = Modifier
@@ -45,7 +45,7 @@ fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String) -> Unit = {}) {
         elevation = 4.dp,
         shape = RoundedCornerShape(14.dp),
         backgroundColor = Color.White,
-        onClick = { onItemClicked(item.id) }
+        onClick = { onItemClicked(item.id, item.name) }
     ) {
 
         ConstraintLayout() {
