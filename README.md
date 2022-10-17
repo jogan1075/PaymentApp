@@ -8,7 +8,7 @@
 This project brings to the table set of best practices, tools, and solutions:
 
 * 100% [Kotlin](https://kotlinlang.org/)
-* Modern architecture (Clean Architecture, Multi-Module setup, Model-View-ViewModel)
+* Modern architecture (Clean Architecture, Multi-Module setup, Model-View-Intent)
 * [Android Jetpack](https://developer.android.com/jetpack/compose)
 * Single-activity architecture
 * Dependency Injection ([Hilt](https://dagger.dev/hilt/))
@@ -18,9 +18,7 @@ This project brings to the table set of best practices, tools, and solutions:
 
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin's way of way of writing asynchronous, non-blocking code
-  - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - notify views when the underlying data changes
-  - [SharedFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow) - notify multiple subscribers that data changes 
-
+  
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
   - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Allows you to more easily write code that interacts with views
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI-related data in a lifecycle conscious way
