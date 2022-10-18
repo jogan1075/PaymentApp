@@ -8,7 +8,7 @@ interface InstallmentRemote {
         id: String,
         amount: Float,
         issuerId: String
-    ): Response<List<InstallmentOption>>
+    ): List<InstallmentOption>
 
-    suspend fun getInstallmentsOptions(id: String, amount: Float): Response<List<InstallmentOption>>
+    suspend fun getInstallmentsOptions(id: String, amount: Float): List<InstallmentOption>
 }

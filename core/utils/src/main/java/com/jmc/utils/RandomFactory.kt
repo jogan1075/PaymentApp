@@ -9,6 +9,7 @@ object RandomFactory {
 
     fun generateString(): String = UUID.randomUUID().toString()
     fun generateDouble(): Double = Math.random()
+    fun generateFloat(): Float = Math.random().toFloat()
     fun generateInt(): Int = ThreadLocalRandom.current().nextInt(0, 1000 + 1)
     fun generateBoolean(): Boolean = Math.random() < 0.5
     fun generateInt(min: Int = 0, max: Int): Int = ThreadLocalRandom.current().nextInt(min, max)

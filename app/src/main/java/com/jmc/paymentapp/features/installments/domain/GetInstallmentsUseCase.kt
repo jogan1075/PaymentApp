@@ -15,12 +15,11 @@ class GetInstallmentsUseCase @Inject constructor(
 
     suspend fun execute(id: String, amount: Double, issuerId: String?): List<PayerCostUI>? {
         var retorno: List<PayerCostUI>? =null
-        val rep = repository.getInstallmentsOptions(id, amount.toFloat(), issuerId!!).body()
-            ?.map(mapper1::map)
+        val rep = repository.getInstallmentsOptions(id, amount.toFloat(), issuerId!!).map(mapper1::map)
 
-        val ext = rep?.map { installmentModelUi ->
+        val ext = rep.map { item ->
             with(mapper) {
-                retorno = installmentModelUi.payerCosts.fromRemoteToDomain()
+                retorno = item.payerCosts.fromRemoteToDomain()
             }
         }
 

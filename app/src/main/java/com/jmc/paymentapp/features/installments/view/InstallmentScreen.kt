@@ -19,7 +19,6 @@ import com.jmc.paymentapp.R
 import com.jmc.paymentapp.features.installments.presentation.InstallmentViewModel
 import com.jmc.paymentapp.features.installments.presentation.contract.InstallmentContract
 import com.jmc.paymentapp.navigation.Screens
-import com.jmc.theme.black
 import com.jmc.theme.colorPrimary
 import com.jmc.theme.white
 import com.jmc.uicomponent.LoadingScreen
@@ -110,12 +109,12 @@ private fun Content(
                         .padding(bottom = 50.dp)
                 ) {
                     items(state.list?.size!!) { index ->
-                        ItemInstallmentRow(item = state.list[index], onItemClicked = { msg ->
+                        ItemInstallmentRow(item = state.list[index]) { msg ->
                             navController.navigate(
                                 Screens.ResumeScreen.route +
                                         "?param=$amount,$namePayment,$nameBank,$image,$msg"
                             )
-                        })
+                        }
                     }
                 }
             }

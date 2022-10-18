@@ -14,14 +14,14 @@ class InstallmentDataRepository @Inject constructor(
         id: String,
         amount: Float,
         issuerId: String
-    ): Response<List<InstallmentOption>> {
+    ): List<InstallmentOption> {
         return factory.getRemote().getInstallmentsOptions(id, amount, issuerId)
     }
 
     override suspend fun getInstallmentsOptions(
         id: String,
         amount: Float
-    ): Response<List<InstallmentOption>> {
+    ): List<InstallmentOption> {
         return factory.getRemote().getInstallmentsOptions(id, amount)
     }
 

@@ -3,6 +3,7 @@ package com.jmc.paymentapp.features.installments.presentation.contract
 import com.jmc.mvi.ViewEvent
 import com.jmc.mvi.ViewSideEffect
 import com.jmc.mvi.ViewState
+import com.jmc.paymentapp.features.installments.domain.model.InstallmentModelUi
 import com.jmc.paymentapp.features.installments.domain.model.PayerCostUI
 
 class InstallmentContract {

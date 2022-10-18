@@ -19,6 +19,8 @@ import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.jmc.paymentapp.R
+import com.jmc.paymentapp.features.installments.data.remote.model.PayerCost
+import com.jmc.paymentapp.features.installments.domain.model.InstallmentModelUi
 import com.jmc.paymentapp.features.installments.domain.model.PayerCostUI
 
 @Composable

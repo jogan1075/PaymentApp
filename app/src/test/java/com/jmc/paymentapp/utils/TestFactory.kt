@@ -2,6 +2,10 @@ package com.jmc.paymentapp.utils
 
 import com.google.gson.annotations.SerializedName
 import com.jmc.paymentapp.features.banks.data.remote.model.CardIssuer
+import com.jmc.paymentapp.features.installments.data.remote.model.InstallmentOption
+import com.jmc.paymentapp.features.installments.data.remote.model.Issuer
+import com.jmc.paymentapp.features.installments.data.remote.model.PayerCost
+import com.jmc.paymentapp.features.installments.domain.model.PayerCostUI
 import com.jmc.paymentapp.features.payment.data.remote.models.*
 import com.jmc.utils.RandomFactory
 
@@ -81,4 +85,62 @@ object TestFactory {
 
             )
     }
+
+
+    fun makeInstallmentOptionList(count: Int) =
+        (0..count).map { makeInstallmentOption() }
+
+    private fun makeInstallmentOption(): InstallmentOption {
+        return InstallmentOption(
+            agreements = RandomFactory.generateString(),
+            issuer = makeIssuer(),
+            merchantAccountId = RandomFactory.generateString(),
+            payerCosts = makePayerCostList(1),
+            paymentMethodId = RandomFactory.generateString(),
+            paymentTypeId = RandomFactory.generateString(),
+            processingMode = RandomFactory.generateString(),
+        )
+    }
+
+    private fun makePayerCostList(count: Int) =
+        (0..count).map { makePayerCost() }
+
+
+    private fun makePayerCost(): PayerCost {
+        return PayerCost(
+            discountRate = RandomFactory.generateFloat(),
+            installmentAmount = RandomFactory.generateFloat(),
+            installmentRate = RandomFactory.generateFloat(),
+            installmentRateCollector = RandomFactory.generateArrayString(),
+            installments = RandomFactory.generateInt(),
+            labels = RandomFactory.generateArrayString(),
+            maxAllowedAmount = RandomFactory.generateFloat(),
+            minAllowedAmount = RandomFactory.generateFloat(),
+            paymentMethodOptionId = RandomFactory.generateString(),
+            recommendedMessage = RandomFactory.generateString(),
+            reimbursementRate = RandomFactory.generateString(),
+            totalAmount = RandomFactory.generateFloat(),
+        )
+    }
+
+    private fun makeIssuer(): Issuer {
+        return Issuer(
+            id = RandomFactory.generateString(),
+            name = RandomFactory.generateString(),
+            secureThumbnail = RandomFactory.generateString(),
+            thumbnail = RandomFactory.generateString(),
+        )
+    }
+    fun makePayerCostUIList(count: Int) =
+        (0..count).map { makePayerCostUI() }
+
+
+    private fun makePayerCostUI(): PayerCostUI {
+        return PayerCostUI(
+            paymentMethodOptionId = RandomFactory.generateString(),
+            recommendedMessage = RandomFactory.generateString(),
+
+        )
+    }
+
 }

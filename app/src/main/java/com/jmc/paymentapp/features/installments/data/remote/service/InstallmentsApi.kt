@@ -12,11 +12,11 @@ interface InstallmentsApi {
         @Query("payment_method_id") payment_id: String,
         @Query("amount") amount: Float,
         @Query("issuer.id") issuer_id: String
-    ): Response<List<InstallmentOption>>
+    ):List<InstallmentOption>
 
     @GET("payment_methods/installments")
     suspend fun getInstallmentsOptions(
         @Query("payment_method_id") payment_id: String,
         @Query("amount") amount: Float,
-    ): Response<List<InstallmentOption>>
+    ): List<InstallmentOption>
 }
