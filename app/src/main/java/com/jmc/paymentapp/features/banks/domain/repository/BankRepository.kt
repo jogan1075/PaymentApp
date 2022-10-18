@@ -5,5 +5,5 @@ import retrofit2.Response
 
 interface BankRepository {
 
-    suspend fun getCardIssuers(id: String): Response<List<CardIssuer>>
+    suspend fun getCardIssuers(id: String): List<CardIssuer>
 }

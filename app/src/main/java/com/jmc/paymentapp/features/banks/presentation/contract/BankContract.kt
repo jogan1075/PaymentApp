@@ -3,7 +3,7 @@ package com.jmc.paymentapp.features.banks.presentation.contract
 import com.jmc.mvi.ViewEvent
 import com.jmc.mvi.ViewSideEffect
 import com.jmc.mvi.ViewState
-import com.jmc.paymentapp.features.banks.domain.model.BankModelUi
+import com.jmc.paymentapp.features.banks.data.remote.model.CardIssuer
 
 class BankContract {
 
@@ -13,7 +13,7 @@ class BankContract {
 
     data class State(
         override val isLoading: Boolean = false,
-        val list: List<BankModelUi>? = listOf(),
+        val list: List<CardIssuer>? = listOf(),
         val error: String? = null
     ) : ViewState {
 

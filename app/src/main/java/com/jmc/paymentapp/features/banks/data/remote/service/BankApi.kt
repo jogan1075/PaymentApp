@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface BankApi {
 
     @GET("payment_methods/card_issuers")
-    suspend fun getCardIssuers(@Query("payment_method_id") payment_id: String): Response<List<CardIssuer>>
+    suspend fun getCardIssuers(@Query("payment_method_id") payment_id: String): List<CardIssuer>
 }

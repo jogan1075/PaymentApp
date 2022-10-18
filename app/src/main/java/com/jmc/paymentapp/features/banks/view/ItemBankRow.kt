@@ -30,12 +30,12 @@ import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.jmc.paymentapp.R
-import com.jmc.paymentapp.features.banks.domain.model.BankModelUi
+import com.jmc.paymentapp.features.banks.data.remote.model.CardIssuer
 
 
 @Composable
 fun ItemBankRow(
-    item: BankModelUi,
+    item: CardIssuer,
     onItemClicked: (String, String, String) -> Unit = { _, _, _ -> }
 ) {
 

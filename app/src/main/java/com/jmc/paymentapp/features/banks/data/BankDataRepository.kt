@@ -10,7 +10,7 @@ class BankDataRepository @Inject constructor(
     private val factory: BankSourceFactory
 ) : BankRepository {
 
-    override suspend fun getCardIssuers(id: String): Response<List<CardIssuer>> {
+    override suspend fun getCardIssuers(id: String): List<CardIssuer> {
         return factory.getRemote().getCardIssuers(id)
     }
 

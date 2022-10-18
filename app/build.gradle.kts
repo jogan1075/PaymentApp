@@ -106,4 +106,6 @@ dependencies {
     addModuleDependencies()
 
     implementation("io.coil-kt:coil-gif:2.2.2")
+    testImplementation(TestingLib.mockitoKotlin)
+    testImplementation ("io.kotest:kotest-assertions-core:5.3.1")
 }
