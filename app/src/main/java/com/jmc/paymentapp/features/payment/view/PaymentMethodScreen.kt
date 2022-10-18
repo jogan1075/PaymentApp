@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.jmc.paymentapp.R
+import com.jmc.paymentapp.features.banks.presentation.contract.BankContract
 import com.jmc.paymentapp.features.payment.presentation.PaymentViewModel
 import com.jmc.paymentapp.features.payment.presentation.contract.PaymentContract
 import com.jmc.paymentapp.navigation.Screens
@@ -27,14 +28,20 @@ import com.jmc.uicomponent.LoadingScreen
 fun PaymentMethodScreen(navController: NavHostController, amount: String) {
     val viewModel = hiltViewModel<PaymentViewModel>()
     val state = viewModel.viewState.value
-
+    if (state.list.isNullOrEmpty()) {
+        viewModel.setEvent(PaymentContract.Event.CallService)
+    }
     LoadingScreen(isLoading = viewModel.state.isLoading) {
         Content(amount = amount, state = state, navController = navController)
     }
 }
 
 @Composable
-private fun Content(amount: String, state: PaymentContract.State, navController: NavHostController) {
+private fun Content(
+    amount: String,
+    state: PaymentContract.State,
+    navController: NavHostController
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -60,8 +67,7 @@ private fun Content(amount: String, state: PaymentContract.State, navController:
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        ,
+                        .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -78,7 +84,7 @@ private fun Content(amount: String, state: PaymentContract.State, navController:
                         .fillMaxSize()
                         .padding(bottom = 50.dp)
                 ) {
-                    val listOrder= state.list?.sortedBy { it.name }
+                    val listOrder = state.list?.sortedBy { it.name }
                     items(listOrder?.size!!) { index ->
                         ItemPaymentRow(item = listOrder[index], onItemClicked = { id, name ->
                             navController.navigate(

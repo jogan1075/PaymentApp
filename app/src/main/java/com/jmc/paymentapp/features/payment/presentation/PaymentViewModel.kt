@@ -18,20 +18,20 @@ class PaymentViewModel @Inject constructor(
 ) :
     BaseVM<PaymentContract.Event, PaymentContract.State>(stateHandle) {
 
-
-    init {
-        launch {
-            setState { copy(isLoading = true).clearErrors() }
-            val listPayments =  userUseCase.execute()
-            setState { copy(isLoading = false, list = listPayments) }
-        }
-    }
-
     override fun setInitialState(): PaymentContract.State {
         return PaymentContract.State()
     }
 
     override fun handleEvents(intent: PaymentContract.Event) {
+        when(intent){
+            PaymentContract.Event.CallService -> {
+                viewModelScope.launch(RepositoryCoroutineHandler(::handleError)) {
+                    setState { copy(isLoading = true).clearErrors() }
+                    val listPayments =  userUseCase.execute()
+                    setState { copy(isLoading = false, list = listPayments) }
+                }
+            }
+        }
     }
 
     private fun handleError(domainError: DomainError) {

@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -27,15 +26,14 @@ import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.ImageLoader
-import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.jmc.paymentapp.R
-import com.jmc.paymentapp.features.payment.domain.model.PaymentModelUi
+import com.jmc.paymentapp.features.payment.data.remote.models.NewPayment
 
 @Composable
-fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit = { _, _ -> }) {
+fun ItemPaymentRow(item: NewPayment, onItemClicked: (String, String) -> Unit = { _, _ -> }) {
 
     Card(
         modifier = Modifier
@@ -68,16 +66,11 @@ fun ItemPaymentRow(item: PaymentModelUi, onItemClicked: (String, String) -> Unit
                 .build()
 
             val painter = rememberAsyncImagePainter(
-                model = item.secureThumbnail,
+                model = item.secure_thumbnail,
                 error = rememberVectorPainter(Icons.Filled.BrokenImage),
                 placeholder = rememberVectorPainter(Icons.Default.Movie),
                 imageLoader = imageLoader
             )
-            val colorFilter = when (painter.state) {
-                is AsyncImagePainter.State.Loading -> ColorFilter.tint(tintColor)
-                is AsyncImagePainter.State.Error -> ColorFilter.tint(tintColor)
-                else -> null
-            }
 
             Image(
                 painter = painter,

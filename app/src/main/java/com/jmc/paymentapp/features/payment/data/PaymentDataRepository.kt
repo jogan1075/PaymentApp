@@ -1,10 +1,8 @@
 package com.jmc.paymentapp.features.payment.data
 
-import com.jmc.paymentapp.features.payment.data.remote.models.Payment
-import com.jmc.paymentapp.features.payment.data.repository.PaymentRemote
+import com.jmc.paymentapp.features.payment.data.remote.models.NewPayment
 import com.jmc.paymentapp.features.payment.data.source.PaymentSourceFactory
 import com.jmc.paymentapp.features.payment.domain.repository.PaymentRepository
-import retrofit2.Response
 import javax.inject.Inject
 
 class PaymentDataRepository @Inject constructor(
@@ -12,7 +10,7 @@ class PaymentDataRepository @Inject constructor(
 ) : PaymentRepository {
 
 
-    override suspend fun getPaymentsMethods(): Response<List<Payment>> {
+    override suspend fun getPaymentsMethods(): List<NewPayment> {
 
         return factory.getRemote().getPaymentsMethods()
     }
