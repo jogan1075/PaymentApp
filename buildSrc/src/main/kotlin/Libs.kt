@@ -108,6 +108,9 @@ object TestingLib {
     const val Turbine = "app.cash.turbine:turbine:0.7.0"
     const val Mockk = "io.mockk:mockk:1.12.2"
     const val Okhttp = "com.squareup.okhttp3:mockwebserver:5.0.0-alpha.5"
+    const val mockitoKotlin =
+        "org.mockito.kotlin:mockito-kotlin:3.2.0"
+    const val mockitoInline = "org.mockito:mockito-inline:2.15.0"
 }
 
 object AndroidTestingLib {

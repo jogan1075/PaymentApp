@@ -188,9 +188,12 @@ fun DependencyHandler.addTestDependencies() {
     testImplementation(TestingLib.Robolectric)
     testImplementation(TestingLib.Turbine)
     testImplementation(TestingLib.Mockk)
+    testImplementation(TestingLib.mockitoKotlin)
+    testImplementation(TestingLib.mockitoInline)
+
 }
 
-fun DependencyHandler.addHiltDependencies(){
+fun DependencyHandler.addHiltDependencies() {
     implementation(DaggerHiltLib.Android)
     kapt(DaggerHiltLib.AndroidCompiler)
     kapt(DaggerHiltLib.HiltCompiler)
