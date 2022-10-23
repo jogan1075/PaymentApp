@@ -36,12 +36,15 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Destination(start = true)
 fun SucessScreen(
     navigator: NavigationProvider,
-    amount: String,
-    namePayment: String,
-    nameBank: String,
-    image: String,
-    nameRecomendMessage: String
+    amount: String = "",
+    namePayment: String = "",
+    nameBank: String = "",
+    image: String = "",
+    nameRecomendMessage: String = ""
 ) {
+
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()

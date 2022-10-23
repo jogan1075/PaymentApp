@@ -23,16 +23,15 @@ import com.jmc.uicomponent.LoadingScreen
 import com.jmc.utils.R.string
 import com.ramcosta.composedestinations.annotation.Destination
 
-@Composable
 @Destination(start = true)
+@Composable
 fun BankScreen(
+    idPayment: String = "",
+    amount: String = "",
+    namePayment: String = "",
     navigator: NavigationProvider,
-    idPayment: String,
-    amount: String,
-    namePayment: String
 ) {
     val viewModel = hiltViewModel<BankViewModel>()
-
 
     val state = viewModel.viewState.value
     if (state.list.isNullOrEmpty()) {

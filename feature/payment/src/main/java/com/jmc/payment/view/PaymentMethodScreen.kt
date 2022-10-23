@@ -25,9 +25,10 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination(start = true)
-fun PaymentMethodScreen(navigator: NavigationProvider, amount: String) {
+fun PaymentMethodScreen(amount: String ="", navigator: NavigationProvider) {
     val viewModel = hiltViewModel<PaymentViewModel>()
     val state = viewModel.viewState.value
+
     if (state.list.isNullOrEmpty()) {
         viewModel.setEvent(PaymentContract.Event.CallService)
     }
@@ -53,7 +54,7 @@ private fun Content(
                 backgroundColor = colorPrimary,
                 navigationIcon = {
 
-                    IconButton(onClick = {navigator.navigateUp() }) {
+                    IconButton(onClick = { navigator.navigateUp() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back",
@@ -88,10 +89,10 @@ private fun Content(
                     items(listOrder?.size!!) { index ->
                         ItemPaymentRow(item = listOrder[index], onItemClicked = { id, name ->
 
-                            navigator.navigateToBankList(id,name,amount)
-                           /* navController.navigate(
-                                Screens.BankListScreen.route + "?param=${id},${name},${amount}"
-                            )*/
+                            navigator.navigateToBankList(id, name, amount)
+                            /* navController.navigate(
+                                 Screens.BankListScreen.route + "?param=${id},${name},${amount}"
+                             )*/
                         })
                     }
                 }

@@ -29,8 +29,8 @@ import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
-import com.jmc.paymentapp.R
 import com.jmc.payment.data.remote.models.NewPayment
+import com.jmc.utils.R
 
 @Composable
 fun ItemPaymentRow(item: NewPayment, onItemClicked: (String, String) -> Unit = { _, _ -> }) {

@@ -27,15 +27,16 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Destination(start = true)
 fun InstallmentScreen(
     navigator: NavigationProvider,
-    amount: String,
-    idPayment: String,
-    namePayment: String,
-    issuerId: String,
-    nameBank: String,
-    image: String
+    amount: String = "",
+    idPayment: String = "",
+    namePayment: String = "",
+    issuerId: String = "",
+    nameBank: String = "",
+    image: String = ""
 ) {
     val viewModel = hiltViewModel<InstallmentViewModel>()
     val state = viewModel.viewState.value
+
 
     if (state.list.isNullOrEmpty()) {
         viewModel.setEvent(
