@@ -1,4 +1,5 @@
 package com.jmc.paymentapp.navigation
+/*
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
@@ -8,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jmc.paymentapp.features.amount.AmountScreen
 import com.jmc.paymentapp.features.banks.view.BankScreen
 import com.jmc.paymentapp.features.installments.view.InstallmentScreen
-import com.jmc.paymentapp.features.payment.view.PaymentMethodScreen
+import com.jmc.payment.view.PaymentMethodScreen
 import com.jmc.paymentapp.features.sucess.SucessScreen
 
 @Composable
@@ -95,3 +96,4 @@ fun Navigation(activity: Activity) {
     }
 
 }
+*/

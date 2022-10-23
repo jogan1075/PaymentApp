@@ -81,6 +81,14 @@ android.applicationVariants.all {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":libraries:navigation")))
+    implementation(project(mapOf("path" to ":feature:splash")))
+    implementation(project(mapOf("path" to ":feature:amount")))
+    implementation(project(mapOf("path" to ":feature:payment")))
+    implementation(project(mapOf("path" to ":feature:banks")))
+    implementation(project(mapOf("path" to ":feature:installments")))
+    implementation(project(mapOf("path" to ":feature:finished")))
+
     // Common
     addCommonDependencies()
     // Compose

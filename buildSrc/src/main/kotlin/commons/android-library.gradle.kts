@@ -21,7 +21,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+/*    buildTypes {
         release {
             buildConfigStringField("BASE_URL", Configs.Release.BaseUrl)
             buildConfigStringField("DB_NAME", Configs.Release.DbName)
@@ -31,7 +31,7 @@ android {
             buildConfigStringField("BASE_URL", Configs.Debug.BaseUrl)
             buildConfigStringField("DB_NAME", Configs.Debug.DbName)
         }
-    }
+    }*/
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

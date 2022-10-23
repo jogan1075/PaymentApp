@@ -1,21 +1,4 @@
 <resources>
     <string name="app_name">PaymentApp</string>
-    <string name="title_bank">Seleccion de Banco</string>
-    <string name="subtitle_bank">Seleccione su Banco</string>
-    <string name="title_resume">Resumen</string>
-    <string name="subtitle_resume">Seleccione su opcion de cuotas</string>
-    <string name="label_amount">Monto</string>
-    <string name="hint_input">Ingrese monto aqui</string>
-    <string name="btn_next">Siguiente</string>
-    <string name="label_add_amount">Ingrese el monto</string>
-    <string name="txt_amount">Monto: $</string>
-    <string name="txt_payment"> Medio: </string>
-    <string name="title_payment">Medios de Pago</string>
-    <string name="subtitle_payment">Seleccione el Medio de Pago</string>
-    <string name="title_quotas">Opciones de Cuotas</string>
-    <string name="subtitle_quotas">Seleccione su opcion de cuotas</string>
-    <string name="resume_amount">Monto:</string>
-    <string name="resume_bank">Banco:</string>
-    <string name="resume_quota">Cuotas:</string>
-    <string name="btn_confirm">Confirmar</string>
+
 </resources>

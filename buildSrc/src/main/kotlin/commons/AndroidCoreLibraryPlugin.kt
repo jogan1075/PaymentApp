@@ -66,13 +66,13 @@ class AndroidCoreLibraryPlugin : Plugin<Project> {
         buildTypes.apply {
             getByName("release") {
                 proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-                buildConfigStringField("BASE_URL", Configs.Release.BaseUrl)
-                buildConfigStringField("DB_NAME", Configs.Release.DbName)
+//                buildConfigStringField("BASE_URL", Configs.Release.BaseUrl)
+//                buildConfigStringField("DB_NAME", Configs.Release.DbName)
             }
             getByName("debug") {
                 proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-                buildConfigStringField("BASE_URL", Configs.Debug.BaseUrl)
-                buildConfigStringField("DB_NAME", Configs.Debug.DbName)
+//                buildConfigStringField("BASE_URL", Configs.Debug.BaseUrl)
+//                buildConfigStringField("DB_NAME", Configs.Debug.DbName)
             }
         }
     }

@@ -39,14 +39,4 @@ object Configs {
         "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi",
         "-Xopt-in=kotlinx.coroutines.FlowPreview"
     )
-
-    object Release {
-        const val BaseUrl = "https://rickandmortyapi.com/api/"
-        const val DbName = "RortyDb"
-    }
-
-    object Debug {
-        const val BaseUrl = "https://rickandmortyapi.com/api/"
-        const val DbName = "RortyDb"
-    }
 }
