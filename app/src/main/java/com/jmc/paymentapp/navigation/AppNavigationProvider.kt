@@ -12,6 +12,8 @@ import com.ramcosta.composedestinations.navigation.navigateTo
 class AppNavigationProvider constructor(
     private val navController: NavController
 ) : NavigationProvider {
+
+
     override fun navigateToInstallments(
         idPayment: String,
         amount: String,

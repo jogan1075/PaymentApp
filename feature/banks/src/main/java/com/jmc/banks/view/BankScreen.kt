@@ -25,13 +25,12 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination(start = true)
 @Composable
-fun BankScreen(
+internal fun BankScreen(
     idPayment: String = "",
     amount: String = "",
     namePayment: String = "",
-    navigator: NavigationProvider,
+    navigator: NavigationProvider, viewModel: BankViewModel = hiltViewModel()
 ) {
-    val viewModel = hiltViewModel<BankViewModel>()
 
     val state = viewModel.viewState.value
     if (state.list.isNullOrEmpty()) {

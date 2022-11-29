@@ -25,8 +25,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination(start = true)
 @Composable
-fun AmountScreen(navigator: NavigationProvider) {
-    val viewModel = hiltViewModel<AmountViewModel>()
+fun AmountScreen(navigator: NavigationProvider, viewModel: AmountViewModel = hiltViewModel()) {
     val state = viewModel.viewState.value
     Box(
         modifier = Modifier

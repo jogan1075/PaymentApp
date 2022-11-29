@@ -25,8 +25,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination(start = true)
-fun PaymentMethodScreen(amount: String ="", navigator: NavigationProvider) {
-    val viewModel = hiltViewModel<PaymentViewModel>()
+internal fun PaymentMethodScreen(amount: String ="", navigator: NavigationProvider, viewModel: PaymentViewModel = hiltViewModel()) {
     val state = viewModel.viewState.value
 
     if (state.list.isNullOrEmpty()) {

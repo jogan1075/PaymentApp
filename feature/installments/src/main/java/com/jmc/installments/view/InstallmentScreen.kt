@@ -25,16 +25,16 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
 @Destination(start = true)
-fun InstallmentScreen(
+internal fun InstallmentScreen(
     navigator: NavigationProvider,
     amount: String = "",
     idPayment: String = "",
     namePayment: String = "",
     issuerId: String = "",
     nameBank: String = "",
-    image: String = ""
+    image: String = "",viewModel: InstallmentViewModel = hiltViewModel()
 ) {
-    val viewModel = hiltViewModel<InstallmentViewModel>()
+
     val state = viewModel.viewState.value
 
 
